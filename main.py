@@ -4,17 +4,27 @@ connection = None
 
 # TODO: When dealing with the Wizards and Raptors, make sure that Canada/DC is returned correctly
 # ie: This team is not part of the US
+# TODO: Make it so create tables isnt automatic and forces user to use load()
+
 
 # Create tables
 def createTables():
     try:
         global connection
         cursor = connection.cursor()
+        # Create tables
+        cursor.execute("CREATE TABLE states ")
+        cursor.execute("")
+
 
         # Open csvs
         try:
-            teamFile = open("teams.csv")
+            #teamFile = open("teams.csv")
             statesFile = open("states.csv")
+            for line in statesFile:
+                print(line.split(','))
+
+
 
             # Read data from csvs
 
@@ -88,7 +98,7 @@ def main():
 
 
 
-        
+
         connection.close()
 
 main()
