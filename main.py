@@ -2,89 +2,93 @@ import sqlite3
 from sqlite3 import Error
 connection = None
 
-abbrevDict = {
-"Alabama": "AL", 
-"Alaska": "AK", 
-"Arizona": "AZ", 
-"Arkansas": "AR", 
-"California": "CA", 
-"Colorado": "CO", 
-"Delaware": "DE", 
-"Florida": "FL", 
-"Georgia": "GA", 
-"Hawaii": "HI",
-"Idaho": "ID", 
-"Illinois": "IL", 
-"Indiana": "IN", 
-"Iowa": "IA",
-"Kansas": "KS",
-"Kentucky": "KY",
-"Louisiana": "LA",
-"Maine": "ME",
-"Maryland": "MD",
-"Massachusetts": "MA",
-"Michigan": "MI",
-"Minnesota": "MN",
-"Mississippi": "MS",
-"Missouri": "MO",
-"Montana": "MT",
-"Nebraska": "NE",
-"Nevada": "NV",
-"New Hampshire": "NH",
-"New Jersey": "NJ",
-"New Mexico": "NM",
-"New York": "NY",
-"North Carolina": "NC",
-"North Dakota": "ND",
-"": "",
-"": "",
-"": "",
-"": "",
-"": "",
-"": "",
-"": "",
-"": "",
-"": ""}
+# TODO: When dealing with the Wizards and Raptors, make sure that Canada/DC is returned correctly
+# ie: This team is not part of the US
 
-
+# Create tables
 def createTables():
     try:
-		global connection
+        global connection
         cursor = connection.cursor()
-		
-		# Execute statement
-        #cursor.execute(sqlStatement)
 
+        # Open csvs
+        try:
+            teamFile = open("teams.csv")
+            statesFile = open("states.csv")
+
+            # Read data from csvs
+
+            # Execute statement
+            # cursor.execute(sqlStatement)
+
+        except IOError as e:
+            print(e)
+
+    # Sql error
     except Error as e:
         print(e)
 
+
+# Establish DB connection
 def dbConnect():
     global connection
     try:
         connection = sqlite3.connect("nba.db")
-		return connection
+        return connection
 
     except Error as e:
         print(e)
 
 
+
+def capitalStateQuery(statement):
+    print()
+
+def capitalTeamQuery(statement):
+    print()
+
+def lossTeamQuery(statement):
+    print()
+
+def populationStateQuery(statement):
+    print()
+
+def populationTeamQuery(statement):
+    print()
+
+def stateCapitalQuery(statement):
+    print()
+
+def stateTeamQuery(statement):
+    print()
+
+def teamStateQuery(statement):
+    print()
+
+def teamCapitalQuery(statement):
+    print()
+
+def winsTeamQuery(statement):
+    print()
+
+
+
+
 def main():
     dbConnect()
-	global connection
+    global connection
     if connection is not None:
-		# should only create tables if not exists
+        # should only create tables if not exists
         createTables()
 
-		# Perform rest of tasks below
+        # Perform rest of tasks below
 
-		
-		
-		
-		
-		
-		
-		
-		
-		connection.close()
+
+
+
+
+
+        
+        connection.close()
 
 main()
