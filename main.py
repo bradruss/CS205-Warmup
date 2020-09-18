@@ -51,35 +51,113 @@ def dbConnect():
 
 
 
-def capitalStateQuery(statement):
+def teamState(statement):
     print()
 
-def capitalTeamQuery(statement):
+def populationState(statement):
     print()
 
-def lossTeamQuery(statement):
+def capitalState(statement):
     print()
 
-def populationStateQuery(statement):
-    print()
+def teamCapital(capital):
+    global connection
+    cursor = connection.cursor()
 
-def populationTeamQuery(statement):
-    print()
+    # VVVVVVVVVVV DOES NOT WORK YET VVVVVVVVVVVV
+    query = "SELECT team FROM teams WHERE capital LIKE '" + capital + "' " \
+            "(OUTER JOIN states ON state) "
+    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-def stateCapitalQuery(statement):
-    print()
+    cursor.execute(query)
+    returnVal = cursor.fetchall()
+    cursor.close()
+    connection.commit()
+    for x in returnVal:
+        for y in x:
+            print(y)
 
-def stateTeamQuery(statement):
-    print()
+def capitalTeam(team):
+    global connection
+    cursor = connection.cursor()
 
-def teamStateQuery(statement):
-    print()
+    # VVVVVVVVVVV DOES NOT WORK YET VVVVVVVVVVVV
+    query = "SELECT capital FROM states WHERE team LIKE '" + team + "' " \
+            "(OUTER JOIN teams ON state) "
+    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-def teamCapitalQuery(statement):
-    print()
+    cursor.execute(query)
+    returnVal = cursor.fetchall()
+    cursor.close()
+    connection.commit()
+    for x in returnVal:
+        for y in x:
+            print(y)
 
-def winsTeamQuery(statement):
-    print()
+def stateTeam(team):
+    global connection
+    cursor = connection.cursor()
+    query = "SELECT state FROM teams WHERE team LIKE '" + team + "'"
+    cursor.execute(query)
+    returnVal = cursor.fetchall()
+    cursor.close()
+    connection.commit()
+    for x in returnVal:
+        for y in x:
+            print(y)
+
+def populationTeam(team):
+    global connection
+    cursor = connection.cursor()
+
+    # VVVVVVVVVVV DOES NOT WORK YET VVVVVVVVVVVV
+    query = "SELECT population FROM states WHERE team LIKE '" + team + "' " \
+             "(OUTER JOIN teams ON state) "
+    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    cursor.execute(query)
+    returnVal = cursor.fetchall()
+    cursor.close()
+    connection.commit()
+    for x in returnVal:
+        for y in x:
+            print(y)
+
+def stateCapital(capital):
+    global connection
+    cursor = connection.cursor()
+    query = "SELECT state FROM states WHERE capital LIKE '" + capital + "'"
+    cursor.execute(query)
+    returnVal = cursor.fetchall()
+    cursor.close()
+    connection.commit()
+    for x in returnVal:
+        for y in x:
+            print(y)
+
+def winsTeam(team):
+    global connection
+    cursor = connection.cursor()
+    query = "SELECT w FROM teams WHERE team LIKE '" + team + "'"
+    cursor.execute(query)
+    returnVal = cursor.fetchall()
+    cursor.close()
+    connection.commit()
+    for x in returnVal:
+        for y in x:
+            print(y)
+
+def lossesTeam(team):
+    global connection
+    cursor = connection.cursor()
+    query = "SELECT l FROM teams WHERE team LIKE '" + team + "'"
+    cursor.execute(query)
+    returnVal = cursor.fetchall()
+    cursor.close()
+    connection.commit()
+    for x in returnVal:
+        for y in x:
+            print(y)
 
 
 

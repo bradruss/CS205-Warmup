@@ -1,3 +1,4 @@
+import main.py
 
 # Get input
 
