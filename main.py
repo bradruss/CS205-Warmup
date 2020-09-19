@@ -65,8 +65,8 @@ def teamCapital(capital):
     cursor = connection.cursor()
 
     # VVVVVVVVVVV DOES NOT WORK YET VVVVVVVVVVVV
-    query = "SELECT team FROM teams WHERE capital LIKE '" + capital + "' " \
-            "(OUTER JOIN states ON state) "
+    query = "SELECT team FROM teams (FULL OUTER JOIN states ON team.state = states.state)" \
+            " WHERE capital LIKE '" + capital + "' "
     # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     cursor.execute(query)
@@ -82,8 +82,8 @@ def capitalTeam(team):
     cursor = connection.cursor()
 
     # VVVVVVVVVVV DOES NOT WORK YET VVVVVVVVVVVV
-    query = "SELECT capital FROM states WHERE team LIKE '" + team + "' " \
-            "(OUTER JOIN teams ON state) "
+    query = "SELECT capital FROM teams (FULL OUTER JOIN states ON team.state = states.state)" \
+            " WHERE team LIKE '" + team + "' "
     # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     cursor.execute(query)
@@ -111,8 +111,8 @@ def populationTeam(team):
     cursor = connection.cursor()
 
     # VVVVVVVVVVV DOES NOT WORK YET VVVVVVVVVVVV
-    query = "SELECT population FROM states WHERE team LIKE '" + team + "' " \
-             "(OUTER JOIN teams ON state) "
+    query = "SELECT population FROM states (FULL OUTER JOIN teams ON states.state = teams.state)" \
+            " WHERE team LIKE '" + team + "' "
     # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     cursor.execute(query)
