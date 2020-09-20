@@ -1,11 +1,10 @@
-
+from main import *
 # Get input
+def getInput() :
+    userString = input("> ")
+    return userString
 
 # Separate into
-
-# Load data
-
-# Help
 
 # Call each function
 

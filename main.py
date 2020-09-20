@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+from Input import *
 connection = None
 
 # TODO: When dealing with the Wizards and Raptors, make sure that Canada/DC is returned correctly
@@ -108,7 +109,11 @@ def teamCapitalQuery(statement):
 def winsTeamQuery(statement):
     print()
 
+# Help
+def help() :
+    print("")
 
+# Load data
 
 
 def main():
