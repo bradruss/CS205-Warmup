@@ -1,4 +1,4 @@
-import main.py
+import output.py
 
 # Get input
 
