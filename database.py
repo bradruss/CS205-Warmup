@@ -86,16 +86,17 @@ def teamState(state):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y, end='')
-                if y != returnVal[-1]:
-                    print(', ', end='')
-                else:
-                    print('\n')
+    return returnVal
+    # if not returnVal:
+    #     print("NONE")
+    # else:
+    #     for x in returnVal:
+    #         for y in x:
+    #             print(y, end='')
+    #             if y != returnVal[-1]:
+    #                 print(', ', end='')
+    #             else:
+    #                 print('\n')
 
 def populationState(state):
     global connection
@@ -105,12 +106,7 @@ def populationState(state):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 def capitalState(state):
     global connection
@@ -120,12 +116,7 @@ def capitalState(state):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 def teamCapital(capital):
     global connection
@@ -135,16 +126,7 @@ def teamCapital(capital):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y, end='')
-                if y != returnVal[-1]:
-                    print(', ', end='')
-                else:
-                    print('\n')
+    return returnVal
 
 def capitalTeam(team):
     global connection
@@ -154,12 +136,7 @@ def capitalTeam(team):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 def stateTeam(team):
     global connection
@@ -169,12 +146,7 @@ def stateTeam(team):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 def populationTeam(team):
     global connection
@@ -184,12 +156,7 @@ def populationTeam(team):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 def stateCapital(capital):
     global connection
@@ -199,12 +166,7 @@ def stateCapital(capital):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 def winsTeam(team):
     global connection
@@ -214,12 +176,7 @@ def winsTeam(team):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 def lossesTeam(team):
     global connection
@@ -229,12 +186,7 @@ def lossesTeam(team):
     returnVal = cursor.fetchall()
     cursor.close()
     connection.commit()
-    if not returnVal:
-        print("NONE")
-    else:
-        for x in returnVal:
-            for y in x:
-                print(y)
+    return returnVal
 
 
 
@@ -246,34 +198,34 @@ def main():
         createTables()
 
         # Perform rest of tasks below
-        teamState("Colorado")
-        populationState("California")
-        capitalState("California")
-        teamCapital("Denver")
-        capitalTeam("Denver Nuggets")
-        stateTeam("Denver Nuggets")
-        populationTeam("Denver Nuggets")
-        stateCapital("Denver")
-        winsTeam("Denver Nuggets")
-        lossesTeam("Denver Nuggets")
+        print(teamState("California"))
+        print(populationState("California"))
+        print(capitalState("California"))
+        print(teamCapital("Denver"))
+        print(capitalTeam("Denver Nuggets"))
+        print(stateTeam("Denver Nuggets"))
+        print(populationTeam("Denver Nuggets"))
+        print(stateCapital("Denver"))
+        print(winsTeam("Denver Nuggets"))
+        print(lossesTeam("Denver Nuggets"))
 
-        teamState("")
-        teamCapital("")
-        capitalTeam("")
-        stateTeam("")
-        populationTeam("")
-        stateCapital("")
-        winsTeam("")
-        lossesTeam("")
+        print(teamState(""))
+        print(teamCapital(""))
+        print(capitalTeam(""))
+        print(stateTeam(""))
+        print(populationTeam(""))
+        print(stateCapital(""))
+        print(winsTeam(""))
+        print(lossesTeam(""))
 
-        teamState("ghhjhjgjhf")
-        teamCapital("safsfds")
-        capitalTeam("dsfdsfds")
-        stateTeam("afdsd")
-        populationTeam("dfsfdsaf")
-        stateCapital("dsfafdsa")
-        winsTeam("fdsafdas")
-        lossesTeam("dsfdasfd")
+        print(teamState("ghhjhjgjhf"))
+        print(teamCapital("safsfds"))
+        print(capitalTeam("dsfdsfds"))
+        print(stateTeam("afdsd"))
+        print(populationTeam("dfsfdsaf"))
+        print(stateCapital("dsfafdsa"))
+        print(winsTeam("fdsafdas"))
+        print(lossesTeam("dsfdasfd"))
 
 
 
