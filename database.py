@@ -190,49 +190,49 @@ def lossesTeam(team):
 
 
 
-def main():
-    dbConnect()
-    global connection
-    if connection is not None:
-        # should only create tables if not exists
-        createTables()
-
-        # Perform rest of tasks below
-        print(teamState("California"))
-        print(populationState("California"))
-        print(capitalState("California"))
-        print(teamCapital("Denver"))
-        print(capitalTeam("Denver Nuggets"))
-        print(stateTeam("Denver Nuggets"))
-        print(populationTeam("Denver Nuggets"))
-        print(stateCapital("Denver"))
-        print(winsTeam("Denver Nuggets"))
-        print(lossesTeam("Denver Nuggets"))
-
-        print(teamState(""))
-        print(teamCapital(""))
-        print(capitalTeam(""))
-        print(stateTeam(""))
-        print(populationTeam(""))
-        print(stateCapital(""))
-        print(winsTeam(""))
-        print(lossesTeam(""))
-
-        print(teamState("ghhjhjgjhf"))
-        print(teamCapital("safsfds"))
-        print(capitalTeam("dsfdsfds"))
-        print(stateTeam("afdsd"))
-        print(populationTeam("dfsfdsaf"))
-        print(stateCapital("dsfafdsa"))
-        print(winsTeam("fdsafdas"))
-        print(lossesTeam("dsfdasfd"))
-
-
-
-
-
-
-
-        connection.close()
-
-main()
+# def main():
+#     dbConnect()
+#     global connection
+#     if connection is not None:
+#         # should only create tables if not exists
+#         createTables()
+#
+#         # Perform rest of tasks below
+#         print(teamState("California"))
+#         print(populationState("California"))
+#         print(capitalState("California"))
+#         print(teamCapital("Denver"))
+#         print(capitalTeam("Denver Nuggets"))
+#         print(stateTeam("Denver Nuggets"))
+#         print(populationTeam("Denver Nuggets"))
+#         print(stateCapital("Denver"))
+#         print(winsTeam("Denver Nuggets"))
+#         print(lossesTeam("Denver Nuggets"))
+#
+#         print(teamState(""))
+#         print(teamCapital(""))
+#         print(capitalTeam(""))
+#         print(stateTeam(""))
+#         print(populationTeam(""))
+#         print(stateCapital(""))
+#         print(winsTeam(""))
+#         print(lossesTeam(""))
+#
+#         print(teamState("ghhjhjgjhf"))
+#         print(teamCapital("safsfds"))
+#         print(capitalTeam("dsfdsfds"))
+#         print(stateTeam("afdsd"))
+#         print(populationTeam("dfsfdsaf"))
+#         print(stateCapital("dsfafdsa"))
+#         print(winsTeam("fdsafdas"))
+#         print(lossesTeam("dsfdasfd"))
+#
+#
+#
+#
+#
+#
+#
+#         connection.close()
+#
+# main()
