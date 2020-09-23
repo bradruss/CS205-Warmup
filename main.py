@@ -1,10 +1,37 @@
 from database import *
 import string
 
-VALID_SEARCHES = ["team state", "population state", "capital state", "team capital", "capital team", "state team",
-                  "population team", "state capital", "wins team", "losses team"]
+VALID_SEARCHES = ["teamstate", "populationstate", "capitalstate", "teamcapital", "capitalteam", "stateteam",
+                  "populationteam", "statecapital", "winsteam", "lossesteam"]
 
 ALPHABET = list(string.ascii_lowercase)
+
+
+def helpMenu():
+    print('Valid Searches -> Type of return:')
+    print('team state \"State Name\" -> Teams within state')
+    print('team capital \"State Capital\" -> Teams in corresponding state of the searched capital')
+    print('population state \"State Name\" -> Population of state')
+    print('population team \"Team Name\" -> Population of the state from which team resides')
+    print('capital state \"State Name\" -> Capital City of the state')
+    print('capital team \"Team Name\" -> Capital of the state from which team resides')
+    print('state team \"Team Name\" -> State from which team resides')
+    print('state capital \"State Capital\" -> State from which capital resides')
+    print('wins team \"Team Name\" -> Number of wins in 18/19 season of team')
+    print('losses team \"Team Name\" -> Number of losses in 18/19 season of team')
+
+
+def printResult(result):
+    count = 1
+    for x in result:
+        for y in x:
+            print(y, end='')
+            if count != len(result):
+                print(', ', end='')
+            else:
+                print()
+            count += 1
+
 
 def main():
     end = False
@@ -13,11 +40,11 @@ def main():
         if userString == "quit":
             end = True
         elif userString == "help":
-            # TODO call help function
-            print()
+            helpMenu()
         elif userString == "load data":
-            # TODO call load data function
-            print()
+            if connection is None:
+                dbConnect()
+            createTables()
         else:
 
             if connection is None:
@@ -25,97 +52,100 @@ def main():
             # split on spaces
             listInput = userString.split()
 
-            # add the first two terms as the search fields
-            searchFields = ""
-            searchFields += listInput.pop(0)
-            searchFields += listInput.pop(1)
+            if len(listInput) > 2:
+                # add the first two terms as the search fields
+                searchFields = ""
+                for i in range(2):
+                    searchFields += listInput.pop(0)
 
-            # Remove quotes and make strings lowercase
-            for item1 in listInput:
-                item1.replace("\"", "")
-                item1 = item1.lower()
+                # Remove quotes and make strings lowercase
+                count = 1
+                searchTerm = ""
+                for item in listInput:
+                    item = item.replace("\"", "")
+                    item = item.lower()
+                    if item[0] in ALPHABET:
+                        item = item.capitalize()
+                    if count != len(listInput):
+                        item += " "
+                    searchTerm += item
+                    count += 1
 
-            # make the first letter of each word capital
-            for item2 in listInput:
-                if item2[0] in ALPHABET:
-                    item2[0].upper()
+                if searchFields not in VALID_SEARCHES:
+                    print("Not a valid query. Type \"help\" for a list of valid queries.")
+                else:
+                    if searchFields == "teamstate":
+                        val = teamState(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid state name")
 
-            # Add each word to the searchTerm string
-            searchTerm = ""
-            for item3 in listInput:
-                searchTerm += item3
+                    elif searchFields == "populationstate":
+                        val = populationState(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid state name")
 
-            if searchFields not in VALID_SEARCHES:
-                print("Not a valid query. Type \"help\" for a list of valid queries.")
+                    elif searchFields == "capitalstate":
+                        val = capitalState(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid state name")
+
+                    elif searchFields == "teamcapital":
+                        val = teamCapital(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid capital name")
+
+                    elif searchFields == "captialteam":
+                        val = capitalTeam(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid team name")
+
+                    elif searchFields == "stateteam":
+                        val = stateTeam(searchTerm)
+                        if val:
+                            printResult(val)
+                        elif val == "NA":
+                            print("Team not in the US")
+                        else:
+                            print(searchTerm, " not a valid team name")
+
+                    elif searchFields == "populationteam":
+                        val = populationTeam(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid team name")
+
+                    elif searchFields == "statecapital":
+                        val = stateCapital(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid capital name")
+
+                    elif searchFields == "winsteam":
+                        val = winsTeam(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid team name")
+
+                    elif searchFields == "lossesteam":
+                        val = lossesTeam(searchTerm)
+                        if val:
+                            printResult(val)
+                        else:
+                            print(searchTerm, " not a valid team name")
             else:
-                if searchFields == "teamstate":
-                    val = teamState(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid state name")
+                print("Not a valid query. Type \"help\" for a list of valid queries.")
 
-                elif searchFields == "populationstate":
-                    val = populationState(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid state name")
-
-                elif searchFields == "capitalstate":
-                    val = capitalState(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid state name")
-
-                elif searchFields == "teamcapital":
-                    val = teamCapital(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid capital name")
-
-                elif searchFields == "captialteam":
-                    val = capitalTeam(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid team name")
-
-                elif searchFields == "stateteam":
-                    val = stateTeam(searchTerm)
-                    if val != "":
-                        print(val)
-                    elif val == "NA":
-                        print("Team not in the US")
-                    else:
-                        print(searchTerm, " not a valid team name")
-
-                elif searchFields == "populationteam":
-                    val = populationTeam(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid team name")
-
-                elif searchFields == "statecapital":
-                    val = stateCapital(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid capital name")
-
-                elif searchFields == "winsteam":
-                    val = winsTeam(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid team name")
-
-                elif searchFields == "lossesteam":
-                    val = lossesTeam(searchTerm)
-                    if val != "":
-                        print(val)
-                    else:
-                        print(searchTerm, " not a valid team name")
+main()
