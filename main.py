@@ -1,6 +1,7 @@
 from database import *
 import string
 
+
 VALID_SEARCHES = ["teamstate", "populationstate", "capitalstate", "teamcapital", "capitalteam", "stateteam",
                   "populationteam", "statecapital", "winsteam", "lossesteam"]
 
@@ -33,8 +34,17 @@ def printResult(result):
             count += 1
 
 
+
+
 def main():
     end = False
+    dbConnect()
+    while not checkDBStatus():
+        print("Database has not yet been loaded")
+        print("Please use the command 'load data'")
+        userString = input("> ")
+        if userString == "load data":
+            createTables()
     while not end:
         userString = input("> ")
         if userString == "quit":
