@@ -1,10 +1,25 @@
 import sqlite3
+import os
 from sqlite3 import Error
 connection = None
 
 # TODO: When dealing with the Wizards and Raptors, make sure that Canada/DC is returned correctly
 # ie: This team is not part of the US
-# TODO: Make it so create tables isnt automatic and forces user to use load()
+
+def checkDBStatus():
+    # Check if file exists
+    if os.path.isfile('./nba.db'):
+        global connection
+        cursor = connection.cursor()
+
+        #Check if table exists
+        try:
+            qry = cursor.execute("SELECT NULL FROM states LIMIT 1")
+            return True
+        except Error as e:
+            return False
+    else :
+        return False
 
 
 # Create tables
