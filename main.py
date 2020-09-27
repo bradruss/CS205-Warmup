@@ -26,12 +26,15 @@ def printResult(result):
     count = 1
     for x in result:
         for y in x:
-            print(y, end='')
-            if count != len(result):
-                print(', ', end='')
+            if y == "NA":
+                print("Team has no Home State")
             else:
-                print()
-            count += 1
+                print(y, end='')
+                if count != len(result):
+                    print(', ', end='')
+                else:
+                    print()
+                count += 1
 
 
 
