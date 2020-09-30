@@ -7,6 +7,35 @@ VALID_SEARCHES = ["teamstate", "populationstate", "capitalstate", "teamcapital",
 
 ALPHABET = list(string.ascii_lowercase)
 
+STATE_NAMES = []
+CAPITAL_CITIES = []
+TEAM_NAMES = []
+
+def loadStateData():
+    with open('states.csv','r') as csv_file:
+        lines = csv_file.readlines()
+
+    global STATE_NAMES
+    global CAPITAL_CITIES
+
+    for line in lines:
+        if line != 'ï»¿ID,State,Capital,Population\n':
+            data = line.split(',')
+            STATE_NAMES.append(data[1])
+            CAPITAL_CITIES.append(data[2])
+
+
+def loadTeamNames():
+    with open('team_stats.csv', 'r') as csv_file:
+        lines = csv_file.readlines()
+
+    global TEAM_NAMES
+
+    for line in lines:
+        if line != 'ï»¿id,team,state,w,l\n':
+            data = line.split(',')
+            TEAM_NAMES.append(data[1])
+
 
 def helpMenu():
     print('Valid Searches -> Type of return:')
@@ -37,9 +66,9 @@ def printResult(result):
                 count += 1
 
 
-
-
 def main():
+    loadStateData()
+    loadTeamNames()
     end = False
     dbConnect()
     while not checkDBStatus():
@@ -91,6 +120,8 @@ def main():
                         val = teamState(searchTerm)
                         if val:
                             printResult(val)
+                        elif searchTerm in STATE_NAMES:
+                            print(searchTerm, "does not have a team")
                         else:
                             print(searchTerm, "not a valid state name")
 
@@ -112,6 +143,8 @@ def main():
                         val = teamCapital(searchTerm)
                         if val:
                             printResult(val)
+                        elif searchTerm in CAPITAL_CITIES:
+                            print(searchTerm, "not in a state with a team")
                         else:
                             print(searchTerm, "not a valid capital name")
 
@@ -119,6 +152,8 @@ def main():
                         val = capitalTeam(searchTerm)
                         if val:
                             printResult(val)
+                        elif searchTerm in TEAM_NAMES:
+                            print(searchTerm, "is not in a state with a capital")
                         else:
                             print(searchTerm, "not a valid team name")
 
@@ -135,6 +170,8 @@ def main():
                         val = populationTeam(searchTerm)
                         if val:
                             printResult(val)
+                        elif searchTerm in TEAM_NAMES:
+                            print(searchTerm, "does not have population data")
                         else:
                             print(searchTerm, "not a valid team name")
 
