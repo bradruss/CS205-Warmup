@@ -29,7 +29,6 @@ def createTables():
         cursor = connection.cursor()
         # Create tables
         cursor.execute("""CREATE TABLE IF NOT EXISTS states (
-        ID TEXT PRIMARY KEY,
         State TEXT DEFAULT NULL,
         Capital TEXT DEFAULT NULL,
         Population TEXT DEFAULT NULL);
@@ -52,12 +51,11 @@ def createTables():
             statesFile = open("states.csv")
             for line in statesFile:
                 if line != 'ï»¿ID,State,Capital,Population\n':
-                    id = line.split(',')[0]
                     stateTemp = line.split(',')[1]
                     capital = line.split(',')[2]
                     population = line.split(',')[3]
                     population = population.replace('\n','')
-                    cursor.execute("INSERT INTO states (ID, State, Capital, Population) VALUES (?, ?, ?, ?)", (id, stateTemp, capital, population))
+                    cursor.execute("INSERT INTO states (State, Capital, Population) VALUES (?, ?, ?)", (stateTemp, capital, population))
                     connection.commit()
 
             statesFile.close()
