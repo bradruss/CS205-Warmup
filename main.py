@@ -7,6 +7,7 @@ VALID_SEARCHES = ["teamstate", "populationstate", "capitalstate", "teamcapital",
 
 ALPHABET = list(string.ascii_lowercase)
 
+VALID_STATES = []
 
 def helpMenu():
     print('Valid Searches -> Type of return:')
@@ -35,9 +36,6 @@ def printResult(result):
                 else:
                     print()
                 count += 1
-
-
-
 
 def main():
     end = False
