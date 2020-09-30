@@ -92,35 +92,35 @@ def main():
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid state name")
+                            print(searchTerm, "not a valid state name")
 
                     elif searchFields == "populationstate":
                         val = populationState(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid state name")
+                            print(searchTerm, "not a valid state name")
 
                     elif searchFields == "capitalstate":
                         val = capitalState(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid state name")
+                            print(searchTerm, "not a valid state name")
 
                     elif searchFields == "teamcapital":
                         val = teamCapital(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid capital name")
+                            print(searchTerm, "not a valid capital name")
 
-                    elif searchFields == "captialteam":
+                    elif searchFields == "capitalteam":
                         val = capitalTeam(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid team name")
+                            print(searchTerm, "not a valid team name")
 
                     elif searchFields == "stateteam":
                         val = stateTeam(searchTerm)
@@ -129,35 +129,35 @@ def main():
                         elif val == "NA":
                             print("Team not in the US")
                         else:
-                            print(searchTerm, " not a valid team name")
+                            print(searchTerm, "not a valid team name")
 
                     elif searchFields == "populationteam":
                         val = populationTeam(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid team name")
+                            print(searchTerm, "not a valid team name")
 
                     elif searchFields == "statecapital":
                         val = stateCapital(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid capital name")
+                            print(searchTerm, "not a valid capital name")
 
                     elif searchFields == "winsteam":
                         val = winsTeam(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid team name")
+                            print(searchTerm, "not a valid team name")
 
                     elif searchFields == "lossesteam":
                         val = lossesTeam(searchTerm)
                         if val:
                             printResult(val)
                         else:
-                            print(searchTerm, " not a valid team name")
+                            print(searchTerm, "not a valid team name")
             else:
                 print("Not a valid query. Type \"help\" for a list of valid queries.")
 
