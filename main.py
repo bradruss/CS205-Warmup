@@ -86,7 +86,6 @@ def main():
         elif userString == "load data":
             if connection is None:
                 dbConnect()
-            createTables()
         else:
 
             if connection is None:
